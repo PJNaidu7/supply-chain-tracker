@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+scikit-learn
+pandas
+numpy
+joblib
