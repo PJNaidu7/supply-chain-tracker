@@ -1,0 +1,42 @@
+// Fetch and display system status
+fetch('/api/supply-chain-status')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('status').textContent = data.status;
+    document.getElementById('totalProducts').textContent = data.total_products;
+    document.getElementById('inventoryValue').textContent = `₹ ${data.inventory_value}`;
+  });
+
+// Fetch and display bottlenecks
+fetch('/api/bottleneck-alerts')
+  .then(res => res.json())
+  .then(data => {
+    const alertList = document.getElementById('alerts');
+    alertList.innerHTML = '';
+    data.bottlenecks.forEach(item => {
+      const li = document.createElement('li');
+      li.className = "list-group-item list-group-item-danger";
+      li.textContent = item;
+      alertList.appendChild(li);
+    });
+  });
+
+// Example Chart (Dummy Data)
+const ctx = document.getElementById('inventoryChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['P1', 'P2', 'P3', 'P4'],
+    datasets: [{
+      label: 'Stock Level',
+      data: [20, 35, 10, 8],
+      backgroundColor: 'rgba(54, 162, 235, 0.6)'
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { beginAtZero: true }
+    }
+  }
+});
