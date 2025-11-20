@@ -32,6 +32,7 @@ These modules provide predictive analytics to enhance supply chain decision-maki
 
 **🏗️ Project Structure
 **supply_chain_project/
+supply_chain_project/
 │── app.py
 │── config.py
 │── requirements.txt
